@@ -1,32 +1,17 @@
-
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import Navbar from './components/Navbar/index';
+import BackgroundImage from './components/BackgroundImage';
+import image from './assets/image4.png';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const data = ['Home', 'Acheivements', 'Derby', 'Reports', 'Team', 'Contact Us']
 
 export default function App() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI Create React App example
-        </Typography>
-        <Copyright />
-      </Box>
-    </Container>
+    <div>
+      <BackgroundImage image={image}>
+        <Navbar pages={data} />
+      </BackgroundImage>
+    </div>
+
   );
 }
