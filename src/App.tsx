@@ -1,17 +1,11 @@
-import * as React from 'react';
-import Navbar from './components/Navbar/index';
-import BackgroundImage from './components/BackgroundImage';
-import image from './assets/image4.png';
-
-const data = ['Home', 'Acheivements', 'Derby', 'Reports', 'Team', 'Contact Us']
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './navigation/routes';
 
 export default function App() {
   return (
-    <div>
-      <BackgroundImage image={image}>
-        <Navbar pages={data} />
-      </BackgroundImage>
-    </div>
-
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }

@@ -9,10 +9,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { ThemeProvider } from '@mui/material';
+import customTheme from '../../styles/theme';
+import { NavLink } from 'react-router-dom';
 
 type Props = {
     pages: string[];
 };
+
+type isActiveProps = {
+    isActive : boolean
+}
 
 const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
 
@@ -27,9 +34,16 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
         setAnchorElNav(null);
     };
 
+    const isActiveStyles = ({ isActive }:isActiveProps) => {
+        return {
+            fontWeight: isActive ? 'bold' : 'normal',
+            textDecoration: isActive ? 'normal' : 'underline'
+        }
+    }
+
     return (
-        <Box sx={{ borderRadius: '20px 20px 20px 20px', overflow: 'hidden' }}>
-        <AppBar position="static" color="transparent">
+        <ThemeProvider theme={customTheme}>
+        <AppBar position="static" color="secondary">
         <Container maxWidth="lg">
             <Toolbar disableGutters>
             {/* image */}
@@ -38,14 +52,13 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
                 variant="h6"
                 noWrap
                 component="a"
-                href="/"
                 sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'white',
+                color: 'black',
                 textDecoration: 'none',
                 }}
             >
@@ -53,16 +66,18 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                <ThemeProvider theme={customTheme}>
                 <IconButton
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="primary"
                 >
                 <MenuIcon />
                 </IconButton>
+                </ThemeProvider>
                 <Menu
                 id="menu-appbar"
                 anchorEl={anchorElNav}
@@ -83,7 +98,12 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
                 >
                 {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" color='red'>{page}</Typography>
+                    <Typography textAlign="center" color='black'>
+                        <NavLink 
+                        style={isActiveStyles}
+                        to={`/${page.replace(/\s/g, '').toLowerCase()}`}>
+                        {page}</NavLink>
+                    </Typography>
                     </MenuItem>
                 ))}
                 </Menu>
@@ -102,7 +122,7 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'white',
+                color: 'black',
                 textDecoration: 'none',
                 }}
             >
@@ -113,16 +133,16 @@ const ResponsiveAppBar: FC<Props> = (props): ReactElement => {
                 <Button
                     key={page}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
                 >
-                    {page}
+                    <NavLink style={isActiveStyles} to={`/${page.replace(/\s/g, '').toLowerCase()}`}>{page}</NavLink>
                 </Button>
                 ))}
             </Box>
             </Toolbar>
         </Container>
         </AppBar>
-        </Box>
+        </ThemeProvider>
     );
 }
 export default ResponsiveAppBar;
