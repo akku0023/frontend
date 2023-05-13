@@ -9,6 +9,15 @@ const customTheme = createTheme({
       main: '#FFFF00',
     },
   },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          height: 85, // adjust the height as needed
+        },
+      },
+    },
+  },
 });
 
 export default customTheme;
