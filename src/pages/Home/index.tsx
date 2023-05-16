@@ -12,6 +12,7 @@ const Home: FC = (): ReactElement => {
   const [isCardsDisplayed, setIsCardsDisplayed] = useState<boolean>(false);
 
   const handleScrolling = () => {
+    setIsCardsDisplayed(true);
     window.scrollTo({
       top: window.pageYOffset + 850,
       behavior: 'smooth',
