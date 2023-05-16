@@ -1,4 +1,4 @@
-import { useRoutes, RouteObject, Outlet } from 'react-router-dom';
+import { useRoutes, RouteObject, } from 'react-router-dom';
 import Home from '../pages/Home';
 import Team from '../pages/Team';
 import Layout from '../components/Layout';
@@ -14,10 +14,6 @@ const routes: RouteObject[] = [{
       {
         path: 'team',
         element: <Team />
-      },
-      {
-        path: '',
-        element: <Outlet />
       },
     ]
   },];
